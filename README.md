@@ -1,7 +1,7 @@
 # NLSR-Configuration
 Simple code to generate configuration for NLSR and shell script for certificate initialization and add face NFD and start NLSR.
 ## Prerequisites
-* python ofc
+* python of course
 * pandas
 ## How To Use?
 * Create .xlsx file similar to the example(IDN IP.xlsx)
