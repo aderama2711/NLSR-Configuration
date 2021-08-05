@@ -1,7 +1,12 @@
 # NLSR-Configuration
-## Simple app to generate configuration for NLSR and shell script for certificate initialization, run NFD and NLSR, and stop NLSR.
-## Default configuration
-### Every router will become site, operator, and router certificate publisher. Make sure just 1 root certificate publisher! (Just uncomment one of them).
+Simple code to generate configuration for NLSR and shell script for certificate initialization and add face NFD and start NLSR.
+## Prerequisites
+* python ofc
+* pandas
+## How To Use?
+* Create .xlsx file similar to the example(IDN IP.xlsx)
+* Change filename in line 4 of "NLSR-Configuration from xlsx.py"
+* Run the code and done, you can see all the configuration and shell script in new folder :)
 ## IDN
-### ![alt text](https://github.com/aderama2711/NLSR-Configuration/blob/main/IDN.jpg)
-### Topology that contains 26 node based on big city in Indonesia. 
+![alt text](https://github.com/aderama2711/NLSR-Configuration/blob/main/IDN.jpg)
+Topology that contains 26 node based on big city in Indonesia. 
