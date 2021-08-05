@@ -5,7 +5,7 @@ Simple code to generate configuration for NLSR and shell script for certificate 
 * pandas
 ## How To Use?
 * Create .xlsx file similar to the example(IDN IP.xlsx)
-* Change filename in line 4 of "NLSR-Configuration.py"
+* Change filename (line 4 in "NLSR-Configuration.py")
 * Run the code and done, you can see all the configuration and shell script in new folder :)
 ## IDN
 ![alt text](https://github.com/aderama2711/NLSR-Configuration/blob/main/IDN.jpg)
