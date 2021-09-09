@@ -13,13 +13,13 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv,"hn:",["help","name="])
     except getopt.GetoptError:
-        print 'use -h or --help for help'
+        print ('use -h or --help for help')
         sys.exit(2)
 
     #checking argument
     for opt, arg in opts :
         if opt in ("-h", "--help") :
-            print "Generator for NLSR\n-h or --help for help of course\n-n or --name for specify .xlsx file configuration"
+            print ("Generator for NLSR\n-h or --help for help of course\n-n or --name for specify .xlsx file configuration")
             sys.exit()
         elif opt in ("-n", "--name") :
             filename = arg
