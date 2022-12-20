@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "NLSR Abilene NDNS TA Daffa"
+filename = "IDN IP"
 
 data = pd.read_excel(filename+".xlsx")
 site=[]
