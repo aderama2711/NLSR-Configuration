@@ -23,10 +23,11 @@ for i in site :
     #Generate netplan configuration
     file = open(filename+"/"+i+"/netplan-"+i+".conf","w")
     x = 0
+    file.write("network:\n  version: 2\n  renderer: networkd\n  ethernets:\n    ens3:\n     dhcp4: yes\n")
     for s in data['site'] :
         if s == i :
             cps = int(data['interface'][x].split('eth')[1])
-            file.write("network:\n  version: 2\n  renderer: networkd\n  ethernets:\n    ens%s:\n      dhcp4: no\n     addresses: [%s/30]" % (str(cps+3),str(data['ip'][x])))
+            file.write("    ens%s:\n     dhcp4: no\n     addresses: [%s/30]\n" % (str(cps+3),str(data['ip'][x])))
         x+=1
     file.close
     
