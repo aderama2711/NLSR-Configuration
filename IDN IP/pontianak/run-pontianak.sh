@@ -1,3 +1,4 @@
+sudo mkdir /var/lib/nlsr
 
 nfdc face create udp://192.168.1.69
 nfdc face create udp://192.168.1.126

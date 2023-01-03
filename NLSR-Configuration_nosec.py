@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "IDN IP"
+filename = "Tubes"
 
 data = pd.read_excel(filename+".xlsx")
 site=[]
@@ -19,8 +19,19 @@ for i in site :
     dir = os.path.join(filename,i)
     if not os.path.exists(dir):
         os.mkdir(dir)
+        
+    #Generate netplan configuration
+    file = open(filename+"/"+i+"/netplan-"+i+".conf","w")
+    x = 0
+    for s in data['site'] :
+        if s == i :
+            cps = int(data['interface'][x].split('eth')[1])
+            file.write("network:\n  version: 2\n  renderer: networkd\n  ethernets:\n    ens%s:\n      dhcp4: no\n     addresses: [%s/30]" % (str(cps+3),str(data['ip'][x])))
+        x+=1
+    file.close
+    
     #Generate .conf
-    file = open(filename+"\\"+i+"\\nlsr-"+i+".conf","w")
+    file = open(filename+"/"+i+"/nlsr-"+i+".conf","w")
     file.write("general\n{\n  network /ndn/\n  site /%s\n  router /%%C1.Router/router\n\n  lsa-refresh-time 1800\n\n  lsa-interest-lifetime 4\n  \n  sync-protocol psync\n\n  sync-interest-lifetime 60000\n\n  state-dir       /var/lib/nlsr\n}" % i)
     file.write("\n\nneighbors\n{\n   hello-retries 3\n   \n   hello-timeout 1\n   \n   hello-interval  60\n\n  adj-lsa-build-interval 10\n\n  face-dataset-fetch-tries 3\n  \n  face-dataset-fetch-interval 3600\n")
     x = 0
@@ -34,7 +45,7 @@ for i in site :
     file.close
 
     #Generate run
-    file = open(filename+"\\"+i+"\\run-"+i+".sh","wb")
+    file = open(filename+"/"+i+"/run-"+i+".sh","wb")
     x = 0
     string = "sudo mkdir /var/lib/nlsr\n"
     for s in data['site'] :
