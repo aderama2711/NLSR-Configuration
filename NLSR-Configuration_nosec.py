@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "Link 16 Node"
+filename = "topologi16nodes"
 
 data = pd.read_excel(filename+".xlsx")
 site=[]
