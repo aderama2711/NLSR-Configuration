@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "topologi16nodes"
+filename = "IP-NDN"
 
 data = pd.read_excel(filename+".xlsx")
 site=[]
