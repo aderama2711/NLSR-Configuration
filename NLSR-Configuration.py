@@ -31,7 +31,7 @@ def main():
         #Generate netplan configuration
         file = open(filename+"/"+i+"/netplan-"+i+".conf","w")
         x = 0
-        file.write("network:\n  version: 2\n  renderer: networkd\n  ethernets:\n    ens3:\n     dhcp4: yes\n")
+        file.write("network:\n  version: 2\n  renderer: networkd\n  ethernets:\n    ens3:\n     dhcp4: yes/n")
         for s in data['site'] :
             if s == i :        
                 cps = int(data['interface'][x].split('eth')[1])
@@ -40,7 +40,7 @@ def main():
         file.close
                 
         #Generate .conf
-        file = open(filename+"\\"+i+"\\nlsr-"+i+".conf","w")
+        file = open(filename+"/"+i+"/nlsr-"+i+".conf","w")
         file.write("general\n{\n  network /ndn/\n  site /%s\n  router /%%C1.Router/router\n\n  lsa-refresh-time 1800\n\n  lsa-interest-lifetime 4\n  \n  sync-protocol psync\n\n  sync-interest-lifetime 60000\n\n  state-dir       /var/lib/nlsr\n}" % i)
         file.write("\n\nneighbors\n{\n   hello-retries 3\n   \n   hello-timeout 1\n   \n   hello-interval  60\n\n  adj-lsa-build-interval 10\n\n  face-dataset-fetch-tries 3\n  \n  face-dataset-fetch-interval 3600\n")
         x = 0
@@ -57,13 +57,13 @@ def main():
         file.close
         
         #Generate initial
-        file = open(filename+"\\"+i+"\\initial-"+i+".sh","wb")
+        file = open(filename+"/"+i+"/initial-"+i+".sh","wb")
         string = "\nndnsec-key-gen /ndn/%s > site.key\nndnsec-cert-gen -s /ndn/ site.key > site.cert\nndnsec-cert-install -f site.cert\n" % i + "\nndnsec-key-gen /ndn/%s/%%C1.Operator/op > operator.key \nndnsec-cert-gen -s /ndn/%s operator.key > operator.cert \nndnsec-cert-install -f operator.cert" % (i,i) + "\n\nndnsec-key-gen /ndn/%s/%%C1.Router/router > router.key \nndnsec-cert-gen -s /ndn/%s/%%C1.Operator/op router.key > router.cert \nndnsec-cert-install -f router.cert" % (i,i) + "\nsudo cp /usr/local/etc/ndn/nfd.conf.sample /usr/local/etc/ndn/nfd.conf"
         file.write(string.encode())
         file.close
 
         #Generate run
-        file = open(filename+"\\"+i+"\\run-"+i+".sh","wb")
+        file = open(filename+"/"+i+"/run-"+i+".sh","wb")
         x = 0
         string = ""
         for s in data['site'] :
