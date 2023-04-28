@@ -27,6 +27,18 @@ def main():
         dir = os.path.join(filename,i)
         if not os.path.exists(dir):
             os.mkdir(dir)
+            
+        #Generate netplan configuration
+        file = open(filename+"/"+i+"/netplan-"+i+".conf","w")
+        x = 0
+        file.write("network:\n  version: 2\n  renderer: networkd\n  ethernets:\n    ens3:\n     dhcp4: yes\n")
+        for s in data['site'] :
+            if s == i :        
+                cps = int(data['interface'][x].split('eth')[1])
+                file.write("    ens%s:\n     dhcp4: no\n     addresses: [%s/30]\n" % (str(cps+3),str(data['ip'][x])))
+            x+=1
+        file.close
+                
         #Generate .conf
         file = open(filename+"\\"+i+"\\nlsr-"+i+".conf","w")
         file.write("general\n{\n  network /ndn/\n  site /%s\n  router /%%C1.Router/router\n\n  lsa-refresh-time 1800\n\n  lsa-interest-lifetime 4\n  \n  sync-protocol psync\n\n  sync-interest-lifetime 60000\n\n  state-dir       /var/lib/nlsr\n}" % i)
