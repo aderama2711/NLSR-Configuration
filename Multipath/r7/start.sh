@@ -1,3 +1,3 @@
 nfd-start &> nfd.log &
 sleep 5 &&
-bash run-r5.sh &> nlsr.log &
+bash run-r7.sh &> nlsr.log &
