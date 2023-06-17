@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "controllernode"
+filename = "mininode"
 
 data = pd.read_excel(filename+".xlsx")
 site=[]

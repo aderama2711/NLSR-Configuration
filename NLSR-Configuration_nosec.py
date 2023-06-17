@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "IP-NDN_Update"
+filename = "mininode"
 
 data = pd.read_excel(filename+".xlsx")
 site=[]
