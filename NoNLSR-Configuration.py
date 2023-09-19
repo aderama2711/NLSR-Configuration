@@ -39,6 +39,7 @@ for i in site :
         if s == i :
             string = string + "\nnfdc face create udp://%s" % data['neighbor ip'][x]
         x+=1
-    string = string + "\necho $(date) > ~/timedate.log"
+    string = string + "\necho NLSR Started >> ~/timedate.log"
+    string = string + "\necho $(date) >> ~/timedate.log"
     file.write(string.encode())
     file.close
