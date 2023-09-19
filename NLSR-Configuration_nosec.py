@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "IP-NDNUpdate"
+filename = "Thesis-NLSR"
 
 data = pd.read_excel(filename+".xlsx")
 site=[]
@@ -53,6 +53,7 @@ for i in site :
         if s == i :
             string = string + "\nnfdc face create udp://%s" % data['neighbor ip'][x]
         x+=1
+    string = string + "\necho $(date) > ~/timedate.log"
     string = string + "\nsudo NDN_LOG='nlsr.*=DEBUG' nlsr -f nlsr-%s.conf" % i
     file.write(string.encode())
     file.close

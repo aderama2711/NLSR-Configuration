@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-filename = "mininode"
+filename = "Thesis-CARI"
 
 data = pd.read_excel(filename+".xlsx")
 site=[]
@@ -39,5 +39,6 @@ for i in site :
         if s == i :
             string = string + "\nnfdc face create udp://%s" % data['neighbor ip'][x]
         x+=1
+    string = string + "\necho $(date) > ~/timedate.log"
     file.write(string.encode())
     file.close
